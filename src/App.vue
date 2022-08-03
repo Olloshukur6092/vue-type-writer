@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <TheHome v-if="home" :startGame="startGame" />
+  <TheTypeWriterForm v-if="writer" :getHome="getHome" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import TheTypeWriterForm from "@/components/TheTypeWriterForm";
+import TheHome from "@/components/containers/TheHome";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    TheHome,
+    TheTypeWriterForm,
+  },
+  data() {
+    return {
+      home: true,
+      writer: false
+    }
+  },
+  methods: {
+    startGame() {
+      this.writer = !this.writer
+      this.home = !this.home
+    },
+    getHome() {
+      this.home = !this.home
+      this.writer = !this.writer
+    }
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
